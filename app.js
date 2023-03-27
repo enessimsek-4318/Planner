@@ -1,11 +1,15 @@
+//!------------------------------------------------------------------------------------
+//!===================================== DOM ==========================================
+//!------------------------------------------------------------------------------------
+//------------------------------------------------------
 const addBtn = document.getElementById("todo-button");
-
+//------------------------------------------------------
 const todoInput = document.getElementById("todo-input");
-
+//------------------------------------------------------
 const todoUl = document.getElementById("todo-ul");
-
+//------------------------------------------------------
 let todos = JSON.parse(localStorage.getItem("TODOS")) || [];
-
+//------------------------------------------------------
 addBtn.addEventListener("click", () => {
     if (todoInput.value.trim() === "") {
         alert("Please enter your new plan");
@@ -27,15 +31,15 @@ addBtn.addEventListener("click", () => {
         todoInput.value = "";
     }
 })
-
+//------------------------------------------------------
 const createListElement = (newTodo) => {
-
+    //-------------
     const {
         id,
         completed,
         text
     } = newTodo;
-
+    //-------------
     const li = document.createElement("li");
 
     li.setAttribute("id", id);
@@ -65,7 +69,7 @@ const createListElement = (newTodo) => {
     todoUl.appendChild(li);
 
 };
-
+//------------------------------------------------------
 todoUl.addEventListener("click", (event) => {
     const Id = event.target.parentElement.getAttribute("id");
 
@@ -78,13 +82,13 @@ todoUl.addEventListener("click", (event) => {
         event.target.parentElement.classList.toggle("completed");
     }
 });
-
+//------------------------------------------------------
 todoInput.addEventListener("keydown", (event) => {
     if (event.code === "Enter") {
         addBtn.click();
     }
 });
-
+//------------------------------------------------------
 const renderSavedTodos = () => {
     todos.forEach((todo) => {
         createListElement(todo);
@@ -92,7 +96,8 @@ const renderSavedTodos = () => {
 }
 
 renderSavedTodos();
-
+//------------------------------------------------------
 window.onload = () => {
     todoInput.focus()
 };
+//------------------------------------------------------
